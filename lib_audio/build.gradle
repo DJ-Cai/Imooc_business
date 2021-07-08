@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.library'
+    id 'maven'
+}
+
+def pomVersionName = '1.0.0-SNAPSHOT'
+def pomName = this.getName()
+def pomDescription = 'the audio library for all project'
+
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs' , include:['*.jar'])
+    implementation this.rootProject.depsLibs.appcompat
+
+//    implementation 'androidx.appcompat:appcompat:1.2.0'
+//    implementation 'com.google.android.material:material:1.2.1'
+//    testImplementation 'junit:junit:4.+'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+//这个是上传到maven私服的脚本配置
+uploadArchives{
+    repositories{
+        mavenDeployer{
+            repository(url:NEXUS_REPOSITORY_URL){
+                authentication(userName:NEXUS_USERNAME,password:NEXUS_PASSWORD)
+            }
+            pom.project{
+//                工程名字、版本号、描述。。
+                name pomName
+                version pomVersionName
+                description pomDescription
+                artifactId pomVersionName
+                groupId POM_GROUPID
+                packaging POM_PACKAGING
+            }
+        }
+    }
+}

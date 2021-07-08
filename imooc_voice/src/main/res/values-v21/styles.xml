@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- 关掉以后可以修改系统颜色   -->
+    <item name="android:windowTranslucentStatus">false</item>
+    <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    <!--&lt;!&ndash;Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色&ndash;&gt;-->
+    <!--&lt;!&ndash; 可以修改状态栏的颜色  这里改为透明 -->
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <!--  系统导航栏设置为白色  -->
+    <item name="android:navigationBarColor">@android:color/white</item>
+    <item name="android:fitsSystemWindows">true</item>
+    <!-- 设置了上面四个以后，沉浸式的的第一部分工作做完 ，第二部分要交给代码 -->
+
+    <!--允许activity的transition转场动画-->
+    <item name="android:windowActivityTransitions">true</item>
+  </style>
+</resources>
+
+

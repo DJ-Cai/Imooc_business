@@ -1,0 +1,67 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from : file('imooc.gradle')
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        //这里只是为gradle来进行maven仓库的配置pulgin
+        //还需要在整个项目处进行配置，就是下面的allproject的地方
+        mavenCentral()
+//      配置用nexus创建的maven私服的仓库地址
+        maven{
+            url 'http://localhost:8081/repository/imooc_releases/'
+//          为上面的仓库设置账户和密码
+            credentials{
+                username 'admin'
+                password 'admin'
+            }
+        }
+        maven{
+            url 'http://localhost:8081/repository/imooc_snapshots/'
+//          为上面的仓库设置账户和密码
+            credentials{
+                username 'admin'
+                password 'admin'
+            }
+        }
+    }
+    dependencies {
+        //视频里这里用的是3.2.0，说3.4.1必须使用androidx
+        classpath "com.android.tools.build:gradle:3.2.0"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        //为整个项目配置maven
+//      配置用nexus创建的maven私服的仓库地址
+        maven{
+            url 'http://localhost:8081/repository/imooc_releases/'
+//          为上面的仓库设置账户和密码
+            credentials{
+                username 'admin'
+                password 'admin'
+            }
+        }
+        maven{
+            url 'http://localhost:8081/repository/imooc_snapshots/'
+//          为上面的仓库设置账户和密码
+            credentials{
+                username 'admin'
+                password 'admin'
+            }
+        }
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

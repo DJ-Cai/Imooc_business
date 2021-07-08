@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+
+    defaultConfig {
+//        视频的项目applicationId是 “com.imooc.imooc_voice”
+        applicationId rootProject.android.applicationId
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+        //分包
+        multiDexEnabled rootProject.android.multiDexEnabled
+
+
+        testInstrumentationRunner rootProject.android.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs' , include:['*.jar'])
+    implementation this.rootProject.depsLibs.appcompat
+    implementation project(':lib_common_ui')
+    implementation project(path: ':magicindicator')
+    implementation project(path: ':magicindicator')
+//    implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
+
+//    implementation 'androidx.appcompat:appcompat:1.2.0'
+//    implementation 'com.google.android.material:material:1.2.1'
+//    testImplementation 'junit:junit:4.+'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

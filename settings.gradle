@@ -1,0 +1,13 @@
+include ':magicindicator'
+include ':lib_webview'
+include ':lib_pullalive'
+include ':lib_update'
+include ':lib_share'
+include ':lib_qrcode'
+include ':lib_network'
+include ':lib_image_loader'
+include ':lib_common_ui'
+include ':lib_video'
+include ':lib_audio'
+include ':imooc_voice'
+rootProject.name = "Imooc_business"

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+<!--    主内容区-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--layout_marginStart = 左边缘--><!--layout_marginEnd = 右边缘-->
+        <RelativeLayout
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+            <!--layout_alignParentStart = 父元素左侧对齐 = layout_alignParentLeft-->
+            <TextView
+                android:id="@+id/toggle_view"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/category"/>
+            <!--layout_alignParentEnd = 父元素右侧对齐 = layout_alignParentRight-->
+            <TextView
+                android:id="@+id/search_view"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/b_p"/>
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="42dp"
+                android:layout_marginEnd="42dp"
+                android:layout_toStartOf="@id/search_view"
+                android:layout_toEndOf="@+id/toggle_view"/>
+
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_layout">
+        </androidx.viewpager.widget.ViewPager>
+
+<!--        暂时没有放入bottomView，后面在audio的时候再解决-->
+    </RelativeLayout>
+
+<!--    侧滑内容区(侧滑菜单)-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
