@@ -8,7 +8,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import net.dongjian.imooc_voice.R;

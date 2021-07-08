@@ -36,9 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs' , include:['*.jar'])
     implementation this.rootProject.depsLibs.appcompat
     implementation project(':lib_common_ui')
-    implementation project(path: ':magicindicator')
-    implementation project(path: ':magicindicator')
-//    implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
+    implementation project(':magicindicator')
 
 //    implementation 'androidx.appcompat:appcompat:1.2.0'
 //    implementation 'com.google.android.material:material:1.2.1'
