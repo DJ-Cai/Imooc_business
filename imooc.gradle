@@ -20,6 +20,7 @@ ext{
             appcompat : '28.0.0',
             //magicindicator : '1.6.0',  这里主要是因为将magicindicator作为module引入了，所以不再导入
             okhttp         : '3.3.0',
+            gson           : '2.8.0',
     ]
 
 //      3、依赖的相关地址
@@ -27,6 +28,7 @@ ext{
             appcompat :"com.android.support:appcompat-v7:${depsVersion.appcompat}",
             //magicindicator : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator}",
             okhttp         : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
+            gson           : "com.google.code.gson:gson:${depsVersion.gson}",
 
     ]
 }
