@@ -17,6 +17,11 @@ public class OkHttpException extends Exception {
      */
     private Object emsg;
 
+    /**
+     *
+     * @param ecode 错误码
+     * @param emsg 错误类型
+     */
     public OkHttpException(int ecode, Object emsg) {
         this.ecode = ecode;
         this.emsg = emsg;

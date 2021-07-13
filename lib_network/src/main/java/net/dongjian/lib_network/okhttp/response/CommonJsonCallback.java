@@ -1,10 +1,12 @@
 package net.dongjian.lib_network.okhttp.response;
 
 import android.os.Handler;
+import android.os.Looper;
 
 import com.google.gson.Gson;
 
 import net.dongjian.lib_network.okhttp.exception.OkHttpException;
+import net.dongjian.lib_network.okhttp.listener.DisposeDataHandle;
 import net.dongjian.lib_network.okhttp.listener.DisposeDataListener;
 
 import java.io.IOException;
@@ -35,6 +37,12 @@ public class CommonJsonCallback implements Callback {
     private DisposeDataListener mListener;
     private Handler mDeliveryHandler;
     private Class<?> mClass;
+
+    public CommonJsonCallback(DisposeDataHandle handle) {
+        this.mListener = handle.mListener;
+        this.mClass = handle.mClass;
+        this.mDeliveryHandler = new Handler(Looper.getMainLooper());
+    }
 
     @Override
     public void onFailure(Call call, IOException e) {
