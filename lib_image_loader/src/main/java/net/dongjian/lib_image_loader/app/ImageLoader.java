@@ -53,6 +53,7 @@ public class ImageLoader {
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .skipMemoryCache(false)
                 .priority(Priority.NORMAL);
+        return options;
     }
 
 }
