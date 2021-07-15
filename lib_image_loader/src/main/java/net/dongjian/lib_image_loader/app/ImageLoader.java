@@ -1,6 +1,10 @@
 package net.dongjian.lib_image_loader.app;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
+
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -8,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import net.dongjian.lib_image_loader.R;
 import net.dongjian.lib_image_loader.image.CustomRequestListener;
@@ -33,7 +38,7 @@ public class ImageLoader {
         return imageLoader;
     }
 
-    public void displayImageForView(ImageView imageView, String url, CustomRequestListener requestListener){
+    public void displayImageForView(ImageView imageView, String url){
         //1、with(context)   2、load(url) 加载url  3、into(view) 加载进view中    图片加载的三要素
         Glide.with(imageView.getContext())
                 .asBitmap()              //asBitmap ： 转化为bitmap  后可以使用  transition--图片加载的过渡效果
@@ -41,6 +46,25 @@ public class ImageLoader {
                 .apply(initCommonOptions()) //apply：使用自己设定的加载配置
                 .load(url)
                 .into(imageView);
+    }
+
+    public void displayImageForCircle(ImageView imageView , String url){
+        Glide.with(imageView.getContext())
+                .asBitmap()
+                .apply(initCommonOptions())
+                .load(url)
+                .into(new BitmapImageViewTarget(imageView){
+                    //将imageView包装成target
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        //构造圆形drawable
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(imageView.getResources(),resource);
+                        circularBitmapDrawable.setCircular(true);
+                        //设置imageView的drawable
+                        imageView.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
 
     }
 
