@@ -4,16 +4,22 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import net.dongjian.imooc_voice.R;
-import net.dongjian.imooc_voice.model.user.CHANNEL;
+import net.dongjian.imooc_voice.event.LoginEvent;
+import net.dongjian.imooc_voice.model.CHANNEL;
+import net.dongjian.imooc_voice.utils.UserManager;
 import net.dongjian.imooc_voice.view.home.adpater.HomePagerAdapter;
+import net.dongjian.imooc_voice.view.login.LoginActivity;
 import net.dongjian.lib_common_ui.base.BaseActivity;
+import net.dongjian.lib_image_loader.app.ImageLoaderManager;
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -21,6 +27,10 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -31,12 +41,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private View mToggleView;
     private View mSearchView;
 
+    //登录相关的view
+    private View unLogginLayout;
+    private ImageView mPhotoView;
+
     private ViewPager mViewPager;
     private HomePagerAdapter mHomePagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_home);
         initView();
         initData();
@@ -47,11 +62,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mToggleView = findViewById(R.id.toggle_view);
         mSearchView = findViewById(R.id.search_view);
         mViewPager = findViewById(R.id.view_pager);
+        unLogginLayout = findViewById(R.id.unloggin_layout);
+        mPhotoView = findViewById(R.id.avatr_view);
         mHomePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(),CHANNELS);
         mViewPager.setAdapter(mHomePagerAdapter);
 
         mToggleView.setOnClickListener(this);
-        
+        unLogginLayout.setOnClickListener(this);
+
         initMagicIndicator();
     }
 
@@ -98,12 +116,43 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         });
         //进行绑定
         magicIndicator.setNavigator(commonNavigator);
+//        ViewPagerHelper.bind(magicIndicator,mViewPager);
         ViewPagerHelper.bind(magicIndicator,mViewPager);
     }
 
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            //点击未登录的布局
+            case R.id.unloggin_layout:
+                if(!UserManager.getInstance().hasLogined()){
+                    LoginActivity.start(this);
+                }else{
+                    //登录了的话，关闭抽屉
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                }
+                break;
 
+        }
+    }
+
+    /**
+     * 登录后发送此事件，被homeActivity接收
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginEvent event){
+        unLogginLayout.setVisibility(View.GONE);
+        mPhotoView.setVisibility(View.VISIBLE);
+        ImageLoaderManager.getInstance().displayImageForCircle(mPhotoView,UserManager.getInstance().getUser().data.photoUrl);
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -1,4 +1,7 @@
 include ':magicindicator'
+include ':magicindicator'
+include ':mylibrary'
+include ':magicindicator'
 include ':lib_webview'
 include ':lib_pullalive'
 include ':lib_update'

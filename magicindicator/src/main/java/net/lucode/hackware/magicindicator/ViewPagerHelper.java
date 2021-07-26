@@ -1,6 +1,6 @@
 package net.lucode.hackware.magicindicator;
 
-import androidx.viewpager.widget.ViewPager;
+import android.support.v4.view.ViewPager;
 
 /**
  * 简化和ViewPager绑定

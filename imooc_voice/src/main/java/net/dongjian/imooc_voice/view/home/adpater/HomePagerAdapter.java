@@ -1,13 +1,13 @@
 package net.dongjian.imooc_voice.view.home.adpater;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
-import net.dongjian.imooc_voice.model.user.CHANNEL;
-import net.dongjian.imooc_voice.view.discovery.DiscoveryFragment;
-import net.dongjian.imooc_voice.view.friend.FriendFragment;
-import net.dongjian.imooc_voice.view.mine.MineFragment;
+import net.dongjian.imooc_voice.model.CHANNEL;
+import net.dongjian.imooc_voice.view.Fragment.discovery.DiscoveryFragment;
+import net.dongjian.imooc_voice.view.Fragment.friend.FriendFragment;
+import net.dongjian.imooc_voice.view.Fragment.mine.MineFragment;
 
 /**
  * 首页ViewPager的Adapter

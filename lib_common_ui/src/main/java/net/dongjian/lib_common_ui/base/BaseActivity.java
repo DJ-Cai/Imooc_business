@@ -1,9 +1,8 @@
 package net.dongjian.lib_common_ui.base;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 
 import net.dongjian.lib_common_ui.utils.StatusBarUtil;
 
@@ -13,7 +12,7 @@ import net.dongjian.lib_common_ui.utils.StatusBarUtil;
 public class BaseActivity extends FragmentActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.statusBarLightMode(this);
     }

@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from : file('imooc.gradle')
+apply from: file('imooc.gradle')
 
 buildscript {
     repositories {
@@ -9,21 +9,24 @@ buildscript {
         //还需要在整个项目处进行配置，就是下面的allproject的地方
         mavenCentral()
 //      配置用nexus创建的maven私服的仓库地址
-        maven{
+        maven {
             url 'http://localhost:8081/repository/imooc_releases/'
 //          为上面的仓库设置账户和密码
-            credentials{
+            credentials {
+                username 'admin'
+                password 'admin'
+            }
+        }
+        maven {
+            url 'http://localhost:8081/repository/imooc_snapshots/'
+//          为上面的仓库设置账户和密码
+            credentials {
                 username 'admin'
                 password 'admin'
             }
         }
         maven{
-            url 'http://localhost:8081/repository/imooc_snapshots/'
-//          为上面的仓库设置账户和密码
-            credentials{
-                username 'admin'
-                password 'admin'
-            }
+            url "https://jitpack.io"
         }
     }
     dependencies {
@@ -42,18 +45,18 @@ allprojects {
         mavenCentral()
         //为整个项目配置maven
 //      配置用nexus创建的maven私服的仓库地址
-        maven{
+        maven {
             url 'http://localhost:8081/repository/imooc_releases/'
 //          为上面的仓库设置账户和密码
-            credentials{
+            credentials {
                 username 'admin'
                 password 'admin'
             }
         }
-        maven{
+        maven {
             url 'http://localhost:8081/repository/imooc_snapshots/'
 //          为上面的仓库设置账户和密码
-            credentials{
+            credentials {
                 username 'admin'
                 password 'admin'
             }
@@ -65,3 +68,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//subprojects {
+//    project.configurations.all {
+//        resolutionStrategy.eachDependency {
+//            details -> if (details.requested.group == 'androidx.core' && !details.requested.name.contains('androidx'))
+//            { details.useVersion "1.0.0" }
+//        }
+//    }
+//}
+
