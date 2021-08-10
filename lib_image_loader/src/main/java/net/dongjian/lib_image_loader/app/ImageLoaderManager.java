@@ -56,6 +56,18 @@ public class ImageLoaderManager {
         return imageLoaderManager;
     }
 
+
+//    //这里用的是内部类的构造，换成DCL吧---静态内部类的单例是最好的
+//    private static class SingletonHolder {
+//        private static ImageLoaderManager instance = new ImageLoaderManager();
+//    }
+//
+//    public static ImageLoaderManager getInstance() {
+//        return ImageLoaderManager.SingletonHolder.instance;
+//    }
+
+
+
     /**
      * 为view加载正常的图片
      *

@@ -26,6 +26,9 @@ ext{
             glide          : '4.9.0',
             glidecompiler  : '4.9.0',
             eventbus       : '3.1.1',
+            greendao       : '3.3.0',
+            design         : '28.0.0',
+            recyclerView   : '28.0.0',
     ]
 
 //      3、依赖的相关地址
@@ -39,6 +42,9 @@ ext{
             rxjava         : "io.reactivex.rxjava2:rxjava:${depsVersion.rxjava}",
             rxandroid      : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid}",
             eventbus       : "org.greenrobot:eventbus:${depsVersion.eventbus}",
+            greendao       : "org.greenrobot:greendao:${depsVersion.greendao}",
+            design         : "com.android.support:design:${depsVersion.design}",
+            recyclerView   : "com.android.support:recyclerview-v7:${depsVersion.recyclerView}"
 
     ]
 }
